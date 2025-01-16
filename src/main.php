@@ -2,10 +2,10 @@
 /**
  * The main plugin function
  *
- * @package create-wordpress-plugin
+ * @package wp-liveblog
  */
 
-namespace Alley\WP\Create_WordPress_Plugin;
+namespace Alley\WP\WP_Liveblog;
 
 use Alley\WP\Features\Group;
 

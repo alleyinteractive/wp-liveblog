@@ -1,11 +1,11 @@
 <?php
 /**
- * Create WordPress Plugin Tests: Example Unit Test
+ * WP Liveblog Tests: Example Unit Test
  *
- * @package create-wordpress-plugin
+ * @package wp-liveblog
  */
 
-namespace Alley\WP\Create_WordPress_Plugin\Tests\Unit;
+namespace Alley\WP\WP_Liveblog\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

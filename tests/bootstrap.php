@@ -1,18 +1,18 @@
 <?php
 /**
- * Create WordPress Plugin Tests: Bootstrap
+ * WP Liveblog Tests: Bootstrap
  *
  * phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
  *
- * @package create-wordpress-plugin
+ * @package wp-liveblog
  */
 
 /**
  * Visit {@see https://mantle.alley.com/testing/test-framework.html} to learn more.
  */
 \Mantle\Testing\manager()
-	// Rsync the plugin to plugins/create-wordpress-plugin when testing.
+	// Rsync the plugin to plugins/wp-liveblog when testing.
 	->maybe_rsync_plugin()
 	// Load the main file of the plugin.
-	->loaded( fn () => require_once __DIR__ . '/../plugin.php' )
+	->loaded( fn () => require_once __DIR__ . '/../wp-liveblog.php' )
 	->install();

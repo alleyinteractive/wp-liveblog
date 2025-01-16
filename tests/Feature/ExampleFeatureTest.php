@@ -1,13 +1,13 @@
 <?php
 /**
- * Create WordPress Plugin Tests: Example Feature Test
+ * WP Liveblog Tests: Example Feature Test
  *
- * @package create-wordpress-plugin
+ * @package wp-liveblog
  */
 
-namespace Alley\WP\Create_WordPress_Plugin\Tests\Feature;
+namespace Alley\WP\WP_Liveblog\Tests\Feature;
 
-use Alley\WP\Create_WordPress_Plugin\Tests\TestCase;
+use Alley\WP\WP_Liveblog\Tests\TestCase;
 
 /**
  * A test suite for an example feature.
