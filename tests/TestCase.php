@@ -1,16 +1,16 @@
 <?php
 /**
- * Create WordPress Plugin Tests: Base Test Class
+ * WP Liveblog Tests: Base Test Class
  *
- * @package create-wordpress-plugin
+ * @package wp-liveblog
  */
 
-namespace Alley\WP\Create_WordPress_Plugin\Tests;
+namespace Alley\WP\WP_Liveblog\Tests;
 
 use Mantle\Testkit\Test_Case as TestkitTest_Case;
 
 /**
- * Create WordPress Plugin Base Test Case
+ * WP Liveblog Base Test Case
  */
 abstract class TestCase extends TestkitTest_Case {
 
