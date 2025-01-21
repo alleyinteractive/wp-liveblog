@@ -8,7 +8,7 @@
 namespace Alley\WP\WP_Liveblog;
 
 use Alley\WP\Features\Group;
-use Alley\WP\WP_Liveblog\Features\WP_Liveblog_Post_Type_Liveblog;
+use Alley\WP\WP_Liveblog\Features\Liveblog_Post_Type;
 
 /**
  * Instantiate the plugin.
@@ -16,7 +16,7 @@ use Alley\WP\WP_Liveblog\Features\WP_Liveblog_Post_Type_Liveblog;
 function main(): void {
 	// Add features here.
 	$plugin = new Group(
-		new WP_Liveblog_Post_Type_Liveblog(),
+		new Liveblog_Post_Type(),
 	);
 
 	$plugin->boot();

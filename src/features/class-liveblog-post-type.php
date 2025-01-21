@@ -1,6 +1,6 @@
 <?php
 /**
- * WP_Liveblog_Post_Type class file.
+ * Liveblog_Post_Type class file.
  *
  * @package wp-liveblog
  */
@@ -12,7 +12,7 @@ use Alley\WP\Types\Feature;
 /**
  * Base post type class.
  */
-class WP_Liveblog_Post_Type_Liveblog implements Feature {
+class Liveblog_Post_Type implements Feature {
 	/**
 	 * Boot the feature.
 	 */
