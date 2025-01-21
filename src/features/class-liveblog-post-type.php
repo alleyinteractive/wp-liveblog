@@ -10,7 +10,7 @@ namespace Alley\WP\WP_Liveblog\Features;
 use Alley\WP\Types\Feature;
 
 /**
- * Base post type class.
+ * Liveblog post type class.
  */
 class Liveblog_Post_Type implements Feature {
 	/**
