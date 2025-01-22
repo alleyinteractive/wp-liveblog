@@ -8,6 +8,7 @@
 namespace Alley\WP\Liveblog\Features;
 
 use Alley\WP\Types\Feature;
+use WP_Post;
 
 /**
  * Liveblog post type.
@@ -17,14 +18,14 @@ final readonly class Liveblog_Post_Type implements Feature {
 	 * Boot the feature.
 	 */
 	public function boot(): void {
-		add_action( 'init', [ $this, 'create_post_type' ], 10 );
-		add_filter( 'post_updated_messages', [ $this, 'set_post_updated_messages' ] );
+		add_action( 'init', [ $this, 'on_init' ] );
+		add_filter( 'post_updated_messages', [ $this, 'filter_post_updated_messages' ] );
 	}
 
 	/**
 	 * Creates the post type.
 	 */
-	public function create_post_type() {
+	public function on_init(): void {
 		register_post_type(
 			'liveblog',
 			[
@@ -101,12 +102,15 @@ final readonly class Liveblog_Post_Type implements Feature {
 	 *
 	 * (Via https://github.com/johnbillion/extended-cpts.)
 	 *
-	 * @param array $messages An associative array of post updated messages with post type as keys.
-	 *
-	 * @return array Updated array of post updated messages.
+	 * @param mixed[] $messages An associative array of post updated messages with post type as keys.
+	 * @return mixed[] Updated array of post updated messages.
 	 */
-	public function set_post_updated_messages( $messages ) {
+	public function filter_post_updated_messages( $messages ) {
 		global $post;
+
+		if ( ! $post instanceof WP_Post ) {
+			return $messages;
+		}
 
 		$preview_url    = get_preview_post_link( $post );
 		$permalink      = get_permalink( $post );
@@ -120,21 +124,21 @@ final readonly class Liveblog_Post_Type implements Feature {
 			// Preview-post link.
 			$preview_post_link_html = sprintf(
 				' <a target="_blank" href="%1$s">%2$s</a>',
-				esc_url( $preview_url ),
+				esc_url( (string) $preview_url ),
 				__( 'Preview liveblog', 'wp-liveblog' )
 			);
 
 			// Scheduled post preview link.
 			$scheduled_post_link_html = sprintf(
 				' <a target="_blank" href="%1$s">%2$s</a>',
-				esc_url( $permalink ),
+				esc_url( (string) $permalink ),
 				__( 'Preview liveblog', 'wp-liveblog' )
 			);
 
 			// View-post link.
 			$view_post_link_html = sprintf(
 				' <a href="%1$s">%2$s</a>',
-				esc_url( $permalink ),
+				esc_url( (string) $permalink ),
 				__( 'View liveblog', 'wp-liveblog' )
 			);
 		}
@@ -145,7 +149,7 @@ final readonly class Liveblog_Post_Type implements Feature {
 			3  => __( 'Custom field updated.', 'wp-liveblog' ),
 			4  => __( 'Liveblog updated.', 'wp-liveblog' ),
 			/* translators: %s: date and time of the revision */
-			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Liveblog restored to revision from %s.', 'wp-liveblog' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false, // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			5  => isset( $_GET['revision'] ) && is_numeric( $_GET['revision'] ) ? sprintf( __( 'Liveblog restored to revision from %s.', 'wp-liveblog' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false, // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			6  => __( 'Liveblog published.', 'wp-liveblog' ) . $view_post_link_html,
 			7  => __( 'Liveblog saved.', 'wp-liveblog' ),
