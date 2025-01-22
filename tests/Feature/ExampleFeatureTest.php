@@ -5,9 +5,9 @@
  * @package wp-liveblog
  */
 
-namespace Alley\WP\WP_Liveblog\Tests\Feature;
+namespace Alley\WP\Liveblog\Tests\Feature;
 
-use Alley\WP\WP_Liveblog\Tests\TestCase;
+use Alley\WP\Liveblog\Tests\TestCase;
 
 /**
  * A test suite for an example feature.
