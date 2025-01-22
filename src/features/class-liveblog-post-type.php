@@ -1,18 +1,18 @@
 <?php
 /**
- * Liveblog_Post_Type class file.
+ * Liveblog_Post_Type class file
  *
  * @package wp-liveblog
  */
 
-namespace Alley\WP\WP_Liveblog\Features;
+namespace Alley\WP\Liveblog\Features;
 
 use Alley\WP\Types\Feature;
 
 /**
- * Liveblog post type class.
+ * Liveblog post type.
  */
-class Liveblog_Post_Type implements Feature {
+final readonly class Liveblog_Post_Type implements Feature {
 	/**
 	 * Boot the feature.
 	 */
@@ -28,7 +28,7 @@ class Liveblog_Post_Type implements Feature {
 		register_post_type(
 			'liveblog',
 			[
-				'labels'       => [
+				'labels'           => [
 					'name'                     => __( 'Liveblogs', 'wp-liveblog' ),
 					'singular_name'            => __( 'Liveblog', 'wp-liveblog' ),
 					'add_new'                  => __( 'Add New Liveblog', 'wp-liveblog' ),
@@ -61,13 +61,25 @@ class Liveblog_Post_Type implements Feature {
 					'item_updated'             => __( 'Liveblog updated.', 'wp-liveblog' ),
 					'menu_name'                => __( 'Liveblogs', 'wp-liveblog' ),
 				],
-				'public'       => true,
-				'description'  => 'A post that contains an active region where frequent updates can be posted.',
-				'show_in_rest' => true,
-				'menu_icon'    => 'dashicons-clock',
-				'supports'     => [ 'title', 'editor', 'comments', 'revisions', 'author', 'excerpt', 'thumbnail', 'custom-fields' ],
-				'taxonomies'   => [ 'category', 'post_tag' ],
-			]
+				'description'      => __( 'A post that contains an active region where frequent updates can be posted.', 'wp-liveblog' ),
+				'public'           => true,
+				'show_in_rest'     => true,
+				'rest_base'        => 'liveblogs',
+				'menu_icon'        => 'dashicons-clock',
+				'map_meta_cap'     => true,
+				'supports'         => [
+					'title',
+					'editor',
+					'revisions',
+					'excerpt',
+					'thumbnail',
+					'custom-fields',
+				],
+				'taxonomies'       => [ 'category', 'post_tag' ],
+				'has_archive'      => true,
+				'rewrite'          => [ 'slug' => 'live' ],
+				'delete_with_user' => false,
+			],
 		);
 	}
 
@@ -104,7 +116,7 @@ class Liveblog_Post_Type implements Feature {
 		$scheduled_post_link_html = '';
 		$view_post_link_html      = '';
 
-		if ( is_post_type_viewable( $this->name ) ) {
+		if ( is_post_type_viewable( 'liveblog' ) ) {
 			// Preview-post link.
 			$preview_post_link_html = sprintf(
 				' <a target="_blank" href="%1$s">%2$s</a>',
@@ -127,7 +139,7 @@ class Liveblog_Post_Type implements Feature {
 			);
 		}
 
-		$messages[ $this->name ] = [
+		$messages['liveblog'] = [
 			1  => __( 'Liveblog updated.', 'wp-liveblog' ) . $view_post_link_html,
 			2  => __( 'Custom field updated.', 'wp-liveblog' ),
 			3  => __( 'Custom field updated.', 'wp-liveblog' ),

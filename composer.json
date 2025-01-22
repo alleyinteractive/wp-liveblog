@@ -34,13 +34,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Alley\\WP\\WP_Liveblog\\Tests\\": "tests"
+            "Alley\\WP\\Liveblog\\Tests\\": "tests"
         }
     },
     "extra": {
         "wordpress-autoloader": {
             "autoload": {
-                "Alley\\WP\\WP_Liveblog\\": "src"
+                "Alley\\WP\\Liveblog\\": "src"
             }
         }
     },
