@@ -5,7 +5,7 @@
  * @package wp-liveblog
  */
 
-namespace Alley\WP\WP_Liveblog\Tests\Unit;
+namespace Alley\WP\Liveblog\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 

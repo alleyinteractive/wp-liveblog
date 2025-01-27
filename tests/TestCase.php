@@ -5,7 +5,7 @@
  * @package wp-liveblog
  */
 
-namespace Alley\WP\WP_Liveblog\Tests;
+namespace Alley\WP\Liveblog\Tests;
 
 use Mantle\Testkit\Test_Case as TestkitTest_Case;
 
